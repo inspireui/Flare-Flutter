@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
 
+T? _ambiguate<T>(T? value) => value;
+
 /// A render box for Flare content.
 abstract class FlareRenderBox extends RenderBox {
   static const double _notPlayingFlag = -1;
@@ -164,10 +166,10 @@ abstract class FlareRenderBox extends RenderBox {
     if (isPlaying) {
       // Paint again
       if (_frameCallbackID != -1) {
-        SchedulerBinding.instance.cancelFrameCallbackWithId(_frameCallbackID);
+        _ambiguate(SchedulerBinding.instance)?.cancelFrameCallbackWithId(_frameCallbackID);
       }
       _frameCallbackID =
-          SchedulerBinding.instance.scheduleFrameCallback(_beginFrame) ?? -1;
+          _ambiguate(SchedulerBinding.instance)?.scheduleFrameCallback(_beginFrame) ?? -1;
     }
 
     final Canvas canvas = context.canvas;
@@ -269,7 +271,7 @@ abstract class FlareRenderBox extends RenderBox {
     } else {
       _lastFrameTime = _notPlayingFlag;
       if (_frameCallbackID != -1) {
-        SchedulerBinding.instance.cancelFrameCallbackWithId(_frameCallbackID);
+        _ambiguate(SchedulerBinding.instance)?.cancelFrameCallbackWithId(_frameCallbackID);
       }
     }
   }
