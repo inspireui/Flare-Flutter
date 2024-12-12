@@ -69,7 +69,7 @@ abstract class ActorColor extends ActorPaint {
   }
 }
 
-abstract class ActorFill {
+mixin ActorFill {
   FillRule _fillRule = FillRule.evenOdd;
   FillRule get fillRule => _fillRule;
 
@@ -122,7 +122,7 @@ abstract class ActorPaint extends ActorComponent {
   }
 }
 
-abstract class ActorStroke {
+mixin ActorStroke {
   double _width = 1.0;
   StrokeCap _cap = StrokeCap.butt;
   StrokeJoin _join = StrokeJoin.miter;

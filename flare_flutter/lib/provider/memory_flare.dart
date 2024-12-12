@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:flare_flutter/asset_provider.dart';
 import 'package:flutter/foundation.dart';
 

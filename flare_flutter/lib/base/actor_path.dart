@@ -11,7 +11,7 @@ import 'package:flare_flutter/base/math/vec2d.dart';
 import 'package:flare_flutter/base/path_point.dart';
 import 'package:flare_flutter/base/stream_reader.dart';
 
-abstract class ActorBasePath {
+mixin ActorBasePath {
   ActorShape? _shape;
   bool _isRootPath = false;
   List<List<ActorClip>?> get allClips;

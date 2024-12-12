@@ -5,7 +5,7 @@ import 'package:flare_flutter/base/actor_skin.dart';
 import 'package:flare_flutter/base/math/mat2d.dart';
 import 'package:flare_flutter/base/stream_reader.dart';
 
-abstract class ActorSkinnable {
+mixin ActorSkinnable {
   ActorSkin? skin;
   List<SkinnedBone>? _connectedBones;
   List<SkinnedBone>? get connectedBones => _connectedBones;

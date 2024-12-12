@@ -2,12 +2,9 @@ import 'dart:math';
 
 import 'package:flare_flutter/asset_provider.dart';
 import 'package:flare_flutter/base/math/aabb.dart';
-import 'package:flare_flutter/base/math/mat2d.dart';
-import 'package:flare_flutter/base/math/vec2d.dart';
 import 'package:flare_flutter/flare.dart';
 import 'package:flare_flutter/flare_cache.dart';
 import 'package:flare_flutter/flare_cache_asset.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
 
@@ -103,6 +100,7 @@ abstract class FlareRenderBox extends RenderBox {
     dispose();
   }
 
+  @override
   void dispose() {
     updatePlayState();
     _unload();
@@ -166,10 +164,12 @@ abstract class FlareRenderBox extends RenderBox {
     if (isPlaying) {
       // Paint again
       if (_frameCallbackID != -1) {
-        _ambiguate(SchedulerBinding.instance)?.cancelFrameCallbackWithId(_frameCallbackID);
+        _ambiguate(SchedulerBinding.instance)
+            ?.cancelFrameCallbackWithId(_frameCallbackID);
       }
-      _frameCallbackID =
-          _ambiguate(SchedulerBinding.instance)?.scheduleFrameCallback(_beginFrame) ?? -1;
+      _frameCallbackID = _ambiguate(SchedulerBinding.instance)
+              ?.scheduleFrameCallback(_beginFrame) ??
+          -1;
     }
 
     final Canvas canvas = context.canvas;
@@ -271,7 +271,8 @@ abstract class FlareRenderBox extends RenderBox {
     } else {
       _lastFrameTime = _notPlayingFlag;
       if (_frameCallbackID != -1) {
-        _ambiguate(SchedulerBinding.instance)?.cancelFrameCallbackWithId(_frameCallbackID);
+        _ambiguate(SchedulerBinding.instance)
+            ?.cancelFrameCallbackWithId(_frameCallbackID);
       }
     }
   }

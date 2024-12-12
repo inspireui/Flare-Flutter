@@ -1,4 +1,3 @@
-import 'package:flare_flutter/base/math/mat2d.dart';
 import 'package:flutter/foundation.dart';
 
 import 'flare.dart';
@@ -23,7 +22,7 @@ import 'flare.dart';
 ///
 /// A basic implementation can be found in [FlareControls].
 
-abstract class FlareController {
+mixin FlareController {
   ValueNotifier<bool> isActive = ValueNotifier<bool>(true);
 
   /// Advances the animation of the current [artboard] by [elapsed].

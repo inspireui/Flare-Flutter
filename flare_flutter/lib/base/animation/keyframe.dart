@@ -1304,8 +1304,6 @@ abstract class KeyFrameWithInterpolation extends KeyFrame {
           }
           break;
         }
-      default:
-        frame._interpolator = HoldInterpolator.instance;
     }
     return true;
   }

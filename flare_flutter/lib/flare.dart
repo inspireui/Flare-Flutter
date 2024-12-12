@@ -202,7 +202,7 @@ class FlutterActorArtboard extends ActorArtboard {
   }
 }
 
-abstract class FlutterActorDrawable {
+mixin FlutterActorDrawable {
   bool _antialias = true;
   ui.BlendMode _blendMode = ui.BlendMode.srcOver;
 
@@ -435,8 +435,8 @@ class FlutterActorImage extends ActorImage with FlutterActorDrawable {
     canvas.save();
 
     clip(canvas);
-    _paint.color =
-        _paint.color.withOpacity(renderOpacity.clamp(0.0, 1.0).toDouble());
+    _paint.color = _paint.color
+        .withAlpha((255.0 * renderOpacity.clamp(0.0, 1.0).toDouble()).round());
 
     if (imageTransform != null) {
       canvas.transform(imageTransform!.mat4);
@@ -760,7 +760,6 @@ class FlutterActorLayerEffectRenderer extends ActorLayerEffectRenderer
           ]);
           break;
         case MaskType.alpha:
-        default:
           maskPaint.colorFilter = const ui.ColorFilter.matrix(
               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]);
           break;
@@ -991,8 +990,7 @@ class FlutterColorFill extends ColorFill with FlutterFill {
   }
 
   set uiColor(Color c) {
-    color = Float32List.fromList(
-        [c.red / 255, c.green / 255, c.blue / 255, c.opacity]);
+    color = Float32List.fromList([c.r / 255, c.g / 255, c.b / 255, c.a / 0xFF]);
   }
 
   @override
@@ -1050,7 +1048,7 @@ class FlutterColorStroke extends ColorStroke with FlutterStroke {
   }
 }
 
-abstract class FlutterFill {
+mixin FlutterFill {
   late ui.Paint _paint;
 
   void initializeGraphics() {
@@ -1205,7 +1203,7 @@ abstract class FlutterPath {
 /// that FlutterPath. Most shapes can use this, but if they want to
 /// use a different procedural backing call, they should implement
 /// FlutterPath and generate the path another way.
-abstract class FlutterPathPointsPath implements FlutterPath {
+mixin FlutterPathPointsPath implements FlutterPath {
   late ui.Path _path;
   bool _isValid = false;
   List<PathPoint> get deformedPoints;
@@ -1463,7 +1461,7 @@ class FlutterRadialStroke extends RadialGradientStroke with FlutterStroke {
   }
 }
 
-abstract class FlutterStroke {
+mixin FlutterStroke {
   late ui.Paint _paint;
   ui.Path? effectPath;
   void initializeGraphics() {

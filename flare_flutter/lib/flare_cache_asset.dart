@@ -3,7 +3,6 @@ import 'package:flare_flutter/cache.dart';
 import 'package:flare_flutter/cache_asset.dart';
 import 'package:flare_flutter/flare.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 
 /// A reference counted asset in a cache.
 class FlareCacheAsset extends CacheAsset {

@@ -1,8 +1,5 @@
 import 'dart:math';
 
-import 'package:flare_flutter/base/animation/actor_animation.dart';
-import 'package:flare_flutter/base/math/mat2d.dart';
-
 import 'flare.dart';
 import 'flare_actor.dart';
 import 'flare_controller.dart';
@@ -12,7 +9,7 @@ import 'flare_controller.dart';
 /// This controller will provide some basic functionality, such as
 /// playing an animation, and advancing every frame. If multiple animations are
 /// playing at the same time, this controller will mix them.
-class FlareControls extends FlareController {
+class FlareControls with FlareController {
   /// The current [FlutterActorArtboard].
   FlutterActorArtboard? _artboard;
 

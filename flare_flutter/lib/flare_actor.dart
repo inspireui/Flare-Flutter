@@ -3,10 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flare_flutter/asset_provider.dart';
 import 'package:flare_flutter/base/actor_drawable.dart';
-import 'package:flare_flutter/base/actor_node.dart';
-import 'package:flare_flutter/base/animation/actor_animation.dart';
 import 'package:flare_flutter/base/math/aabb.dart';
-import 'package:flare_flutter/base/math/mat2d.dart';
 import 'package:flare_flutter/flare.dart';
 import 'package:flare_flutter/flare_controller.dart';
 import 'package:flare_flutter/flare_render_box.dart';
@@ -269,12 +266,8 @@ class FlareActorRenderObject extends FlareRenderBox {
       if (_actor != null) {
         _artboard.overrideColor = value == null
             ? null
-            : Float32List.fromList([
-                value.red / 255.0,
-                value.green / 255.0,
-                value.blue / 255.0,
-                value.opacity
-              ]);
+            : Float32List.fromList(
+                [value.r / 255.0, value.g / 255.0, value.b / 255.0, value.a]);
       }
       markNeedsPaint();
     }
@@ -466,10 +459,10 @@ class FlareActorRenderObject extends FlareRenderBox {
     _artboard.overrideColor = _color == null
         ? null
         : Float32List.fromList([
-            _color!.red / 255.0,
-            _color!.green / 255.0,
-            _color!.blue / 255.0,
-            _color!.opacity
+            _color!.r / 255.0,
+            _color!.g / 255.0,
+            _color!.b / 255.0,
+            _color!.a
           ]);
     _artboard.antialias = _useAntialias;
     _controller?.initialize(_artboard);
